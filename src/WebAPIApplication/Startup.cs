@@ -64,8 +64,8 @@ namespace WebAPIApplication
                     {
                         var claimsIdentity = context.Ticket.Principal.Identity as ClaimsIdentity;
 
-                        // Get the user's ID
-                        string userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+                        // E.g. get the user's ID
+                        //string userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                         return Task.FromResult(0);
                     }
