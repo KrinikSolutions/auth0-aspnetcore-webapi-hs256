@@ -26,7 +26,7 @@ While in the Application settings area of your Auth0 Dashboard, copy the **Domai
 
 Add the JWT middleware to your ASP.NET Core application, by adding the dependency to the `Microsoft.AspNetCore.Authentication.JwtBearer` package: 
 
-```
+``` json
 {
   "dependencies": {
     "Microsoft.NETCore.App": {
@@ -50,7 +50,7 @@ Add the JWT middleware to your ASP.NET Core application, by adding the dependenc
 
 Once this is done remember to do
 
-```
+``` bash
 dotnet restore
 ```
 
@@ -60,7 +60,7 @@ to restore all packages
 
 Next you need to configure the JWT Middleware in the `Configure` method of your `Startup` class:
 
-```
+``` csharp
 public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
 {
     loggerFactory.AddConsole(Configuration.GetSection("Logging"));
@@ -88,7 +88,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 
 Next you can secure the controller actions for which a user needs to be authenticated by adding the `[Authorize]` attribute to the Action:
 
-```
+``` csharp
 public class ValuesController : Controller
 {
     [HttpGet]
@@ -114,7 +114,7 @@ You can test your application by obtaining an `id_token` from Auth0 and then pas
 
 Here is a sample RAW request:
 
-```
+``` bash
 GET /secured/ping HTTP/1.1
 Host: localhost:5000
 Authorization: Bearer <your token>
@@ -122,7 +122,7 @@ Authorization: Bearer <your token>
 
 Or using [RestSharp](http://restsharp.org/):
 
-```
+``` csharp
 var client = new RestClient("http://localhost:5000/secured/ping");
 var request = new RestRequest(Method.GET);
 request.AddHeader("authorization", "Bearer <your token>");
